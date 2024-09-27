@@ -35,20 +35,16 @@ public class Cidade {
         this.pessoas = pessoas;
     }
 
-    public void obterMedicos(){
+    //TODO aqui vc precisa retornar apenas a lista de medicos, aqui o chat fez a boa com o instance of
+    public List<Medico> obterMedicos(){
+
         List<Medico> medicos = new ArrayList<>();
 
-        System.out.println("Cidade do médico:" + this.nome);
-
-        for(Medico medico: medicos){
-            System.out.println("Nome do médico:" + medico.getNome() +
-                    "CPF do médico: " + medico.getCpf() +
-                    "CRM do médico: " + medico.getInscricaoCRM());
+        for(Pessoa pessoa: pessoas){
+            if (pessoa instanceof Medico)
+                medicos.add((Medico) pessoa);
         }
 
-
-
-
-
+        return medicos;
     }
 }

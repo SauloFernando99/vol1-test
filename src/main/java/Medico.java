@@ -23,4 +23,15 @@ public class Medico extends Pessoa {
     public void setEspecialidade(Especialidade especialidade) {
         this.especialidade = especialidade;
     }
+
+    //TODO Aqui o obter dados especifico do Medico
+    @Override
+    public String obterDados() {
+        return "cpf='" + this.getCpf() + '\'' +
+                ", nome='" + this.getNome() + '\'' +
+                ", cidade=" + this.getCidade().getNome() +
+                ", CRM='" + this.getInscricaoCRM() + '\'' +
+                ", especialidade='" + this.getEspecialidade().getDescricao() + '\'' +
+                '}';
+    }
 }

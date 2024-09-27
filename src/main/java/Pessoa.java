@@ -31,18 +31,9 @@ public abstract class Pessoa implements SaidaFormatada {
         this.cpf = cpf;
         this.nome = nome;
         this.cidade = cidade;
-
-
     }
 
+    //TODO Aqui fiz a obterDados um metodo abstrato pra implementar de forma diferente em Paciente e Medico
     @Override
-    public void obterDados() {
-        System.out.println("Pessoa{" +
-                "cpf='" + cpf + '\'' +
-                ", nome='" + nome + '\'' +
-                ", cidade=" + cidade +
-                '}');
-
-    }
-
+    public abstract String obterDados();
 }

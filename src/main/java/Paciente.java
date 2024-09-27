@@ -13,6 +13,12 @@ public class Paciente extends Pessoa {
         this.consultas = consultas;
     }
 
+    //TODO igual na Especialidade
+    public Paciente(String cpf, String nome, Cidade cidade, String telefone) {
+        super(cpf, nome, cidade);
+        this.telefone = telefone;
+    }
+
     public String getTelefone() {
         return telefone;
     }
@@ -47,31 +53,57 @@ public class Paciente extends Pessoa {
 
     }
 
-    public void obterConsultas(LocalDate data, LocalTime hora){
+    //TODO so a adicionar e remover tem retorno void as outras tem q retornar alguma coisa
+
+    //TODO esse metodo tem q receber 2 datas, achar as consultas q aconteceram entre elas e retornar a lista
+    public List<Consulta> obterConsultas(LocalDate dataInicio, LocalDate dataFim){
+
         List<Consulta> consultas = new ArrayList<>();
-        for(Consulta consulta: consultas){
-            System.out.println("Data da consulta:" + consulta.getData() +
-                    "Horário da consulta" + consulta.getHora());
 
+        //TODO o this serve pra diferenciar as duas listas de consultas
+        for(Consulta consulta: this.consultas){
+            if(consulta.getData().isAfter(dataInicio) && consulta.getData().isBefore(dataFim)){
+                consultas.add(consulta);
+            }
         }
-
+        return consultas;
     }
 
-    public void obterConsultas(Especialidade especialidade){
+    //TODO retorna a lista de consultas
+    public List<Consulta> obterConsultas(Especialidade especialidade){
+
         List<Consulta> consultas = new ArrayList<>();
-        for(Consulta consulta: consultas){
-            System.out.println("Especialidade do médico: " + especialidade.getDescricao());
+
+        for(Consulta consulta: this.consultas){
+           if(consulta.getMedico().getEspecialidade() == especialidade){
+               consultas.add(consulta);
+           }
         }
 
+        return consultas;
     }
 
-    public void obterConsultas(Medico medico){
+    //TODO retorna a lista de consultas
+    public List<Consulta> obterConsultas(Medico medico){
+
         List<Consulta> consultas = new ArrayList<>();
-        for(Consulta consulta: consultas){
-            System.out.println("Consulta do médico:" + medico.getNome());
-        }
 
+        for(Consulta consulta: this.consultas){
+            if (consulta.getMedico() == medico){
+                consultas.add(consulta);
+            }
+        }
+        return consultas;
     }
 
-
+    //TODO Aqui o obter dados especifico do Paciente
+    @Override
+    public String obterDados() {
+        return "cpf='" + this.getCpf() + '\'' +
+                ", nome='" + this.getNome() + '\'' +
+                ", cidade=" + this.getCidade().getNome() +
+                ", telefone='" + this.getTelefone() + '\'' +
+                ", consultas='" + this.getConsultas() + '\'' +
+                '}';
+    }
 }

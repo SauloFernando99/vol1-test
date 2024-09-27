@@ -2,22 +2,33 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Especialidade {
-    private int idEspecialidade;
+
+    //TODO igual na consulta
+    private static int contadorId = 0;
+    private int id;
     private String descricao;
     private List<Medico> medicos = new ArrayList<>();
 
-    public Especialidade(int idEspecialidade, String descricao, List<Medico> medicos) {
-        this.idEspecialidade = idEspecialidade;
+    public Especialidade(String descricao, List<Medico> medicos) {
+        this.id = ++contadorId;
         this.descricao = descricao;
         this.medicos = medicos;
     }
 
-    public int getIdEspecialidade() {
-        return idEspecialidade;
+    //TODO quando a classe tiver alguma lista eu recomendo fazer um construtor extra sem ela pra poder instanciar o
+    // objeto sem ter q passar uma lista vazia pra ele,
+    // pra isso ja serve o private List<Medico> medicos = new ArrayList<>();
+    public Especialidade(String descricao) {
+        this.id = ++contadorId;
+        this.descricao = descricao;
     }
 
-    public void setIdEspecialidade(int idEspecialidade) {
-        this.idEspecialidade = idEspecialidade;
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getDescricao() {

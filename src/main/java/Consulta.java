@@ -2,6 +2,10 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 
 public class Consulta implements SaidaFormatada {
+
+    //TODO aqui instanciei um contador estatico, sempre que ele for editado
+    // em uma consulta todos os Objetos consulta vao ser editados tbm
+    private static int contadorId = 0;
     private int id;
     private LocalDate data;
     private LocalTime hora;
@@ -9,15 +13,19 @@ public class Consulta implements SaidaFormatada {
     private Paciente paciente;
     private Medico medico;
 
-    public Consulta(Medico medico) {
+    //TODO nao precisa desse construtor
+    /*public Consulta(Medico medico) {
         this.medico = medico;
-    }
+    }*/
 
-    public Consulta(int id, LocalDate data, LocalTime hora, double valorConsulta, Paciente paciente) {
+    //TODO agora nao precisa mais passar o id no construtor
+    public Consulta(LocalDate data, LocalTime hora, double valorConsulta, Paciente paciente, Medico medico) {
+        this.id = ++contadorId;
         this.data = data;
         this.hora = hora;
         this.valorConsulta = valorConsulta;
         this.paciente = paciente;
+        this.medico = medico;
     }
 
     public LocalDate getData() {
@@ -64,17 +72,16 @@ public class Consulta implements SaidaFormatada {
         this.id = id;
     }
 
+    //TODO Adicionei o return e a string
     @Override
-    public void obterDados() {
-        System.out.println("Consulta{" +
-                "id=" + id +
-                ", data=" + data +
-                ", hora=" + hora +
-                ", valorConsulta=" + valorConsulta +
-                ", paciente=" + paciente +
-                ", medico=" + medico +
-                '}');
-
+    public String obterDados() {
+        return "Consulta{" +
+                "id=" + this.id +
+                ", data=" + this.data +
+                ", hora=" + this.hora +
+                ", valorConsulta=" + this.valorConsulta +
+                ", paciente=" + this.paciente +
+                ", medico=" + this.medico +
+                '}';
     }
-
 }
